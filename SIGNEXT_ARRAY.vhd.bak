@@ -1,0 +1,42 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.bus_pkg.all;
+use ieee.numeric_std.all;
+
+entity SIGNEXT_ARRAY is
+        generic (WIDTH : positive := 16;
+                 len : positive := 8);
+			port (
+				RESET_N,CLK : IN  std_logic;
+				 EN : IN std_logic;
+				 DIN : IN std_logic_vector((WIDTH-1) downto 0);
+				 DOUT  : out bus_array(DELAY - 1 downto 0)(WIDTH - 1 downto 0)
+			);
+end SIGNEXT_ARRAY;
+
+architecture arch_SIGNEXT_ARRAY of SIGNEXT_ARRAY is
+
+
+begin
+
+   SIGNEXT_ARRAY : for I in 0 to (len - 1) generate
+	
+	
+		-- ciklā ievietojam papildu generate operatoru, kas izpilda if nosacījumu, lai 
+		-- atšķirīgi konfigurētu pirmo reģistru virknē, proti, pieslēdzot ta ieejā DIN pieslēgvietu
+
+		  SIGNEXT : entity work.SIGNEXT
+        port map (  A      => DIN(I),
+						  Y	   => DOUT(I) --
+					);
+
+
+	
+	
+	end generate SIGNEXT_ARRAY; 
+	
+
+end arch_SIGNEXT_ARRAY;
+

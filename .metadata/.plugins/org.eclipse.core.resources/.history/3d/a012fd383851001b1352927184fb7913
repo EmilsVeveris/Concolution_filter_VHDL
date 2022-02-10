@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include "altera_avalon_pio_regs.h"
+#include "system.h"
+
+int main()
+{
+	int segment[10] = {64, 249, 164, 176, 153, 146, 130, 248, 128, 144};
+	unsigned int  count = 0;
+	unsigned int  count_2 = 0;
+	unsigned int  count_3 = 0;
+	unsigned int  number = 0;
+	unsigned int  X_cord = 0;
+	unsigned int  Y_cord = 0;
+	unsigned int  x_max = 0;
+	unsigned int  y_max = 0;
+
+	printf("Hello from Emils Uzd3!\n");
+	while(1)
+    {
+
+  /*	  IOWR_ALTERA_AVALON_PIO_DATA(SEG_PIO_0_BASE,segment[count]);
+  	  IOWR_ALTERA_AVALON_PIO_DATA(SEG_PIO_1_BASE,segment[count_2]);
+  	  IOWR_ALTERA_AVALON_PIO_DATA(SEG_PIO_2_BASE,segment[count_3]);
+
+  	  number = IORD_ALTERA_AVALON_PIO_DATA(SW_PIO_BASE);
+	  count = number % 10;
+	  number = number / 10;
+	  count_2 = number % 10;
+	  number = number / 10;
+	  count_3 = number % 10;
+	  number = number / 10;*/
+	  X_cord = IORD_ALTERA_AVALON_PIO_DATA(X_COORD_BASE);
+	  if( X_cord > x_max){
+		  printf("x_max %d \n", x_max);
+		  x_max = X_cord;
+	  }
+
+	  Y_cord = IORD_ALTERA_AVALON_PIO_DATA(Y_COORD_BASE);
+	  if( Y_cord > y_max){
+		  printf("y_max %d \n", y_max);
+		  y_max = Y_cord;
+	  }
+	  if(X_cord < 300)
+	  {
+		  if (Y_cord < 300)
+		  {
+	  	  IOWR_ALTERA_AVALON_PIO_DATA(HDMI_TX_D_BASE,30000);
+		  } else {
+			  IOWR_ALTERA_AVALON_PIO_DATA(HDMI_TX_D_BASE,0);
+		  }
+	  } else {
+	  	  IOWR_ALTERA_AVALON_PIO_DATA(HDMI_TX_D_BASE,0);
+	  }
+    }
+  return 0;
+}

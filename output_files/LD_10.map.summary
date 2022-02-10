@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Wed Nov 18 10:34:06 2020
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : LD_10
+Top-level Entity Name : nios2_system_v0
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 9016
+Total pins : 123
+Total virtual pins : 0
+Total block memory bits : 532,840
+Total DSP Blocks : 3
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2
+Total DLLs : 1

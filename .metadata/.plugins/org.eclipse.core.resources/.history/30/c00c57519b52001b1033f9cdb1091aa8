@@ -1,0 +1,40 @@
+# include <stdio.h>
+# include "altera_avalon_pio_regs.h"
+# include "system.h"
+# include "sys/alt_stdio.h"
+# include "alt_types.h"
+# include "altera_avalon_uart.h"
+# include <string.h>
+
+
+int main()
+{
+
+	altera_avalon_uart_state* sp_UART_0;
+	sp_UART_0->base = UART_0_BASE;
+
+
+	char tx_buffer[8] = "BITBANG";
+	char rx_buffer[8];
+	char rx_buffer_old[8];
+	int test = 0;
+
+	IOWR_ALTERA_AVALON_PIO_DATA(LED_PIO_BASE, 255);
+
+	printf("Hello from Emils Uzd3!\n");
+
+	while(1)
+    {
+		test = altera_avalon_uart_read(sp_UART_0, *rx_buffer, sizeof(rx_buffer),0);
+		if (rx_buffer != rx_buffer_old)
+		{
+			printf("Saòemts no UART : %c \n", rx_buffer);
+		}
+		altera_avalon_uart_write(sp_UART_0,*tx_buffer,sizeof(tx_buffer));
+		usleep(100000);
+		rx_buffer_old = rx_buffer;
+
+
+    }
+  return 0;
+}

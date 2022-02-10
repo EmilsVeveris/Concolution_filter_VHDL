@@ -1,0 +1,249 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_cal_success",
+					"strict" : false
+				},
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_cal_fail",
+					"strict" : false
+				},
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_init_done",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_0_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_1_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seg_pio_2_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "audio_0_external_interface_DACDAT",
+					"strict" : false
+				},
+				{
+					"name" : "i2c_0_i2c_serial_sda_inout",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[0]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[1]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[2]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[3]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[0]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[1]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[2]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[3]",
+					"strict" : false
+				},
+				{
+					"name" : "i2c_0_i2c_serial_scl_inout",
+					"strict" : false
+				},
+				{
+					"name" : "clk_clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset_reset_n",
+					"strict" : false
+				},
+				{
+					"name" : "audio_0_external_interface_DACLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "audio_0_external_interface_BCLK",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "audio_0_external_interface_ADCLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "audio_0_external_interface_ADCDAT",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

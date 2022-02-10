@@ -1,0 +1,136 @@
+Flow report for LD_08_1
+Wed Nov 04 23:00:09 2020
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Wed Nov 04 22:59:51 2020       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; LD_08_1                                     ;
+; Top-level Entity Name           ; nios2_system_v0                             ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CGXFC5C6F27C7                              ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 1,238 / 29,080 ( 4 % )                      ;
+; Total registers                 ; 1950                                        ;
+; Total pins                      ; 42 / 364 ( 12 % )                           ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 192,384 / 4,567,040 ( 4 % )                 ;
+; Total DSP Blocks                ; 3 / 150 ( 2 % )                             ;
+; Total HSSI RX PCSs              ; 0 / 6 ( 0 % )                               ;
+; Total HSSI PMA RX Deserializers ; 0 / 6 ( 0 % )                               ;
+; Total HSSI TX PCSs              ; 0 / 6 ( 0 % )                               ;
+; Total HSSI PMA TX Serializers   ; 0 / 6 ( 0 % )                               ;
+; Total PLLs                      ; 0 / 12 ( 0 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 11/04/2020 22:56:56 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; LD_08_1             ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                              ;
++-------------------------------------+-------------------------------------------------------------------+--------------------------------------+-----------------+------------+
+; Assignment Name                     ; Value                                                             ; Default Value                        ; Entity Name     ; Section Id ;
++-------------------------------------+-------------------------------------------------------------------+--------------------------------------+-----------------+------------+
+; COMPILER_SIGNATURE_ID               ; 5025750868503.160452341619376                                     ; --                                   ; --              ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                                ; --                                   ; --              ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                                 ; --                                   ; --              ; --         ;
+; MISC_FILE                           ; nios2_system_v0/synthesis/../nios2_system_v0.cmp                  ; --                                   ; --              ; --         ;
+; MISC_FILE                           ; nios2_system_v0/synthesis/../../nios2_system_v0.qsys              ; --                                   ; --              ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                            ; --                                   ; nios2_system_v0 ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                            ; --                                   ; nios2_system_v0 ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                            ; --                                   ; nios2_system_v0 ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                               ; --                                   ; --              ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                             ; --                                   ; --              ; --         ;
+; PROJECT_IP_REGENERATION_POLICY      ; ALWAYS_REGENERATE_IP                                              ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --              ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                      ; --                                   ; --              ; --         ;
+; SLD_FILE                            ; nios2_system_v0/synthesis/nios2_system_v0.regmap                  ; --                                   ; --              ; --         ;
+; SLD_FILE                            ; nios2_system_v0/synthesis/nios2_system_v0.debuginfo               ; --                                   ; --              ; --         ;
+; SLD_INFO                            ; QSYS_NAME nios2_system_v0 HAS_SOPCINFO 1 GENERATION_ID 1604523161 ; --                                   ; nios2_system_v0 ; --         ;
+; SOPCINFO_FILE                       ; nios2_system_v0/synthesis/../../nios2_system_v0.sopcinfo          ; --                                   ; --              ; --         ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                ; --                                   ; --              ; --         ;
+; TOP_LEVEL_ENTITY                    ; nios2_system_v0                                                   ; LD_08_1                              ; --              ; --         ;
++-------------------------------------+-------------------------------------------------------------------+--------------------------------------+-----------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:01:09     ; 1.0                     ; 5027 MB             ; 00:01:42                           ;
+; Fitter               ; 00:01:28     ; 1.2                     ; 6590 MB             ; 00:03:15                           ;
+; Assembler            ; 00:00:09     ; 1.0                     ; 4865 MB             ; 00:00:09                           ;
+; Timing Analyzer      ; 00:00:16     ; 1.8                     ; 5247 MB             ; 00:00:27                           ;
+; Total                ; 00:03:02     ; --                      ; --                  ; 00:05:33                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; LAPTOP-4MBDF9IG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; LAPTOP-4MBDF9IG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; LAPTOP-4MBDF9IG  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; LAPTOP-4MBDF9IG  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off LD_08_1 -c LD_08_1
+quartus_fit --read_settings_files=off --write_settings_files=off LD_08_1 -c LD_08_1
+quartus_asm --read_settings_files=off --write_settings_files=off LD_08_1 -c LD_08_1
+quartus_sta LD_08_1 -c LD_08_1
+
+
+

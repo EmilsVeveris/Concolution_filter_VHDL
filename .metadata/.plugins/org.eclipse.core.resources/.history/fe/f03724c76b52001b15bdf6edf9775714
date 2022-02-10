@@ -1,0 +1,56 @@
+# include "sys/alt_stdio.h"
+# include "alt_types.h"
+# include "system.h"
+#include "altera_up_avalon_rs232.h"
+# include "altera_avalon_pio_regs.h"
+# define CLOCK_MHz 50
+
+
+static void delay_us(int us);
+
+
+
+
+int i;
+int times;
+alt_u16 sw;
+alt_u8 data;
+alt_u8 error;
+int e;
+
+
+/**************INITIAL MESSAGE*************/
+static void initial_message()
+{
+alt_putstr("\n*****************************\n");
+alt_putstr("* Hello from Nios II! *\n");
+alt_putstr("*****************************\n");
+}
+/****************DELAY*********************/
+static void delay_us(int us)
+{
+times=CLOCK_MHz*us;
+for(i=0;i<times;i++){;}
+}
+
+
+/*****************MAIN**********************/
+int main()
+{
+initial_message();
+alt_up_rs232_dev* serialPort = alt_up_rs232_open_dev(RS232_0_NAME);
+delay_us(100);
+
+
+while(1)
+{
+sw=IORD_ALTERA_AVALON_PIO_DATA(PIO_SWITCHES_BASE);
+IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDR_BASE,sw);
+e=alt_up_rs232_read_data(serialPort, &data, &error);
+delay_us(1000);
+e=alt_up_rs232_write_data(serialPort, data );
+}
+
+
+}
+

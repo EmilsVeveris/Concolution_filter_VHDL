@@ -1,0 +1,178 @@
+
+#include <stdio.h>
+#include "altera_avalon_pio_regs.h"
+#include "system.h"
+#include "altera_avalon_i2c.h"
+#include "altera_up_avalon_audio.h"
+#include "altera_up_avalon_audio_regs.h"
+#include <math.h>
+#define I2C_AUDIO_ADDR  26      //  AUDIO I2C
+#define MAX_I16 32767
+#define MIN_I16 -32767
+
+int isKthBitSet(int n, int k)
+{
+    if (n & (1 << (k - 1)))
+        return 1;
+    else
+        return 0;
+}
+
+
+
+int main()
+{
+
+	alt_u32 *pBuf;
+	pBuf = (alt_u32 *)MEM_IF_LPDDR2_EMIF_0_BASE;
+	pBuf = malloc(100000 * sizeof(alt_u32));
+	if(!pBuf)
+	{
+		printf("Malloc fail\r\n");
+		return 0;
+	}
+	 printf("%d\n", sizeof(pBuf));
+
+	alt_u32 *pBuf_left;
+	pBuf_left = (alt_u32 *)MEM_IF_LPDDR2_EMIF_0_BASE;
+	pBuf_left = malloc(100000 * sizeof(alt_u32));
+	if(!pBuf_left)
+	{
+		printf("Malloc fail\r\n");
+		return 0;
+	}
+	 printf("%d\n", sizeof(pBuf_left));
+  // sound sample to write in audio CODEC IC
+/*define square wave tables*/
+
+   alt_up_audio_dev *audio_dev;
+   ALT_AVALON_I2C_DEV_t *i2c_dev;
+
+   ALT_AVALON_I2C_STATUS_CODE status;
+
+   alt_u8 AUDIO_CODEC_LEFT_ADC[2]  =  {2*0, 0b00011011};
+   alt_u8 AUDIO_CODEC_RIGHT_ADC[2]  = {2*1, 0b00011011};
+   alt_u8 AUDIO_CODEC_LEFT_DAC[2]  =  {2*2, 0b001111001};
+   alt_u8 AUDIO_CODEC_RIGHT_DAC[2]  = {2*3, 0b001111001};
+   alt_u8 AUDIO_CODEC_POWER_DOWN[2]  = {2*6, 0b11101111};
+   alt_u8 AUDIO_CODEC_SAMPLING_RATE[2]  = { 2*8, 0b00001110};  //SR = 0011; BOSR = 1; USB = 0, sf  = 8 khz
+   alt_u8 AUDIO_CODEC_ANALOG_PATH[2] = {2*4, 0b00010101}; // INSEL = 1 (microphone input select to ADC)
+   alt_u8 AUDIO_CODEC_DIGITAL_PATH[2] = {2*5, 0b00000000}; // DACMU = 0 = no mute (signal active)
+   alt_u8 AUDIO_CODEC_DIGITAL_IF[2] = {2*7, 0b1100001}; // FORMAT =  left justified,WL = 16, MASTER mode
+   alt_u8 AUDIO_CODEC_POWER_UP[2] = {2*6, 0b00000000};
+   alt_u8 AUDIO_CODEC_ACTIVATE[2] = {2*9, 0b00000001};
+
+   alt_u8 i2c_rx_buf[2] = {0,0};
+   alt_u8 cmd_buff[1] = {0};
+   alt_u32 i2c_addr_check = 0;
+   alt_u8 issue_restart_check = 0;
+   alt_u8 issue_stop_check = 0;
+
+   unsigned int  number = 0;
+   unsigned int  sound = 0;
+   unsigned int  oldsound = 0;
+   unsigned int  frequency = 0;
+
+
+   int fifospace = 0;
+
+   // open audio and i2c devices
+   audio_dev = alt_up_audio_open_dev (AUDIO_0_NAME);
+   i2c_dev = alt_avalon_i2c_open(I2C_0_NAME);
+
+   if ( audio_dev == NULL)
+	   alt_printf ("Error: could not open audio device \n");
+   else
+	   alt_printf ("Opened audio device \n");
+
+   if ( i2c_dev == NULL)
+	   alt_printf ("Error: could not open I2C device \n");
+   else
+	   alt_printf ("Opened I2C device \n");
+
+   // enable i2c module and print status
+   printf ( "Status = %d\n", alt_avalon_i2c_enable(i2c_dev));
+   //set i2c target adress
+   alt_avalon_i2c_master_target_set(i2c_dev,I2C_AUDIO_ADDR);
+
+   //disable before alt_avalon_i2c_master_tx()
+   alt_avalon_i2c_disable(i2c_dev);
+
+   // set SSM2603 registers
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_POWER_DOWN,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_SAMPLING_RATE,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_LEFT_ADC,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_RIGHT_ADC,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_LEFT_DAC,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_RIGHT_DAC,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_ANALOG_PATH,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_DIGITAL_PATH,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_DIGITAL_IF,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_POWER_UP,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+     usleep(100000);
+
+     // activate SSM2603
+     status = alt_avalon_i2c_master_tx(i2c_dev,AUDIO_CODEC_ACTIVATE,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+
+     //alt_avalon_i2c_disable(i2c_dev);
+     //check the values written in regs
+     alt_avalon_i2c_disable(i2c_dev);
+     for(int i = 0; i < 16; i++)
+     {
+    	 cmd_buff[0] = i*2;
+         status = alt_avalon_i2c_master_tx_rx(i2c_dev,cmd_buff,1,i2c_rx_buf,2,ALT_AVALON_I2C_NO_INTERRUPTS);
+        	     if (status!=ALT_AVALON_I2C_SUCCESS)
+        	    	 {
+        	    	 printf("Read reg[%d] failed = %d\n",i,status); // FAIL
+        	    	 }
+        	     else printf("Read reg[%d] \%d %d \n",i,i2c_rx_buf[1],i2c_rx_buf[0]);
+     }
+
+
+  alt_up_audio_reset_audio_core(audio_dev);
+/*  printf("Starting to write in buffer\n");
+  for(int i = 0; i < 10000; i++)
+  {
+	  pBuf[i] = i+1;
+  }
+	 printf("Done writing in buffer\n");
+  for(int i = 0; i < 10000; i++)
+  {
+	 printf("%d\n",pBuf[i]);
+  }
+  for(int i = 0; i < sizeof(Hz261_sin); i++)
+  {
+	  pBuf[i] = Hz261_sin[i];
+  }*/
+  int i = 0;
+  int load = 1;
+  while(1)
+  {
+	  fifospace = alt_up_audio_write_fifo_space (audio_dev, ALT_UP_AUDIO_RIGHT);
+	  if ( fifospace >= 64 ) // check if free space in write fifo is available
+	  {
+
+
+	  }
+	  number = IORD_ALTERA_AVALON_PIO_DATA(SW_PIO_BASE);
+	  if(isKthBitSet(number,8) == 0) {
+		  if(load == 1){
+			/*  alt_up_audio_record_r(audio_dev, pBuf, sizeof(pBuf));*/
+			  //alt_up_audio_read_fifo(audio_dev, pBuf, 10000, ALT_UP_AUDIO_RIGHT);
+			  alt_up_audio_record_r(audio_dev, pBuf, 10000);
+
+			 printf("Buffer is full\n");
+			 load = 0;
+		  }
+
+	  } else {
+		  alt_up_audio_write_fifo (audio_dev, (pBuf), 10000, ALT_UP_AUDIO_RIGHT);
+		  alt_up_audio_write_fifo (audio_dev, (pBuf), 10000, ALT_UP_AUDIO_LEFT);
+		  load = 1;
+	  }
+	 // usleep(100000);
+  }
+
+
+  return 0;
+}

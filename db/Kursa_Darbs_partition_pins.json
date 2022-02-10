@@ -1,0 +1,257 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "led_pio_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "led_pio_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_cal_success",
+					"strict" : false
+				},
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_cal_fail",
+					"strict" : false
+				},
+				{
+					"name" : "mem_if_lpddr2_emif_0_status_local_init_done",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[7]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[8]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[9]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[10]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[11]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[12]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[13]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[14]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[15]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[16]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[17]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[18]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[19]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[20]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[21]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[22]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[23]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_DE",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_HS",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_VS",
+					"strict" : false
+				},
+				{
+					"name" : "uart_0_external_connection_txd",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_D[3]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[0]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[1]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[2]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs[3]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[0]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[1]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[2]",
+					"strict" : false
+				},
+				{
+					"name" : "memory_mem_dqs_n[3]",
+					"strict" : false
+				},
+				{
+					"name" : "I2C_SCL",
+					"strict" : false
+				},
+				{
+					"name" : "I2C_SDA",
+					"strict" : false
+				},
+				{
+					"name" : "clk_clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset_reset_n",
+					"strict" : false
+				},
+				{
+					"name" : "HDMI_TX_INT",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[6]",
+					"strict" : false
+				},
+				{
+					"name" : "sw_pio_external_connection_export[7]",
+					"strict" : false
+				},
+				{
+					"name" : "uart_0_external_connection_rxd",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

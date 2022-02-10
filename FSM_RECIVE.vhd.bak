@@ -1,0 +1,99 @@
+LIBRARY ieee  ; 
+
+USE ieee.std_logic_1164.all  ; 
+USE ieee.std_logic_textio.all  ; 
+USE ieee.STD_LOGIC_UNSIGNED.all  ; 
+USE ieee.std_logic_unsigned.all  ; 
+use ieee.numeric_std.all;
+
+
+
+ENTITY FSM_UART_RX  IS 
+
+port (
+	 RESET_N, CLK, REC_DATA : IN  std_logic;
+	 addr : IN srd_logic_vector ( downto 0);
+	 WREN, CNT_EN : OUT  std_logic);
+END ; 
+ 
+ARCHITECTURE FSM_UART_RX_arch OF FSM_UART_RX IS
+-- Izveidot velvienu stavokli katram bita kura tiek atjauts ierakstišana shift registra
+  
+  
+  type state is (init, wait_data, recive_data, wait_signal, check_data,);
+  signal NextState : state;
+  signal PresentState : state := init;
+
+
+
+begin
+	
+	process(RESET_N,CLK)
+	begin
+		if RESET_N = '1' then
+				  if CLK = '1' and CLK'event then
+						PresentState <= NextState;
+				  end if;
+		else
+			 PresentState <= init;
+		end if;
+	end process;
+	 
+	 
+	process (PresentState, RX_TICK, RX_ENA, RX)
+	begin
+		case PresentState is
+			when init =>
+				NextState <= wait_data;
+			when wait_data =>
+				if REC_DATA == '1'  then 
+					NextState <= recive_data;
+				else
+					NextState <= wait_data;
+				end if;
+			when recive_data =>
+					NextState <= wait_signal;
+			when wait_signal =>
+				if  then 
+					NextState <= check_data;
+				else
+					NextState <= wait_signal;
+				end if;
+			when check_data =>
+				if  then 
+					NextState <= recive_data;
+				else
+					NextState <= wait_data;
+				end if;
+
+		end case;
+	end process;
+	
+	
+	process (PresentState)
+	begin
+		case PresentState is
+			when init =>				
+				RX_RDY <= '1';
+				BAUD_GEN_EN <= '0';
+				PULSE_PERIOD <= (others => '0');
+				EN_SHIFT <= '0';
+				EN_REG <= '0';
+				CLC <= '1';
+			when wait_start =>
+				RX_RDY <= '1';
+				BAUD_GEN_EN <= '0';
+				PULSE_PERIOD <= (others => '0');
+				EN_SHIFT <= '0';
+				EN_REG <= '0';
+				CLC <= '1';
+
+			end case;	
+	end process;
+ 
+
+
+ 
+	 
+	 
+end;

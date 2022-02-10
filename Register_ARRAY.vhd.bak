@@ -1,0 +1,17 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use work.bus_pkg.all;
+use ieee.numeric_std.all;
+
+entity Register_ARRAY is
+	port (
+		avs_s0_address   : in  std_logic_vector(7 downto 0) := (others => '0'); -- avs_s0.address
+		avs_s0_read      : in  std_logic                    := '0';             --       .read
+		avs_s0_readdata  : out std_logic_vector(7 downto 0);                    --       .readdata
+		avs_s0_write     : in  std_logic                    := '0';             --       .write
+		avs_s0_writedata : in  std_logic_vector(7 downto 0) := (others => '0'); --       .writedata
+		clock_clk        : in  std_logic                    := '0';             --  clock.clk
+		reset_reset      : in  std_logic                    := '0'              --  reset.reset
+	);
+end Register_ARRAY;

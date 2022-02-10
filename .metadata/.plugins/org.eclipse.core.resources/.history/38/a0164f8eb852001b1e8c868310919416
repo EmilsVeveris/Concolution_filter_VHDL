@@ -1,0 +1,88 @@
+/*# include <stdio.h>
+# include "altera_avalon_pio_regs.h"
+# include "system.h"
+# include "sys/alt_stdio.h"
+# include "alt_types.h"
+# include "altera_avalon_uart.h"
+# include <string.h>
+
+
+int main()
+{
+
+	altera_avalon_uart_state* sp_UART_0;
+	sp_UART_0->base = UART_0_BASE;
+
+
+	char tx_buffer[8] = "BITBANG";
+	char rx_buffer[8] = "";
+	char rx_buffer_old[8];
+	int test = 0,count = 0;
+
+
+	IOWR_ALTERA_AVALON_PIO_DATA(LED_PIO_BASE, 255);
+
+
+	printf("Hello from Emils Uzd3!\n");
+
+	while(1)
+    {
+
+		test = altera_avalon_uart_read(sp_UART_0, rx_buffer, sizeof(rx_buffer));
+		if (rx_buffer != rx_buffer_old)
+		{
+			int x = (int)rx_buffer[0] - 48;
+			printf("%i : Saòemts no UART : %c    Parveidots int %i\n", count, rx_buffer, x);
+			count = count + 1;
+
+
+		}
+		altera_avalon_uart_write(sp_UART_0,tx_buffer,sizeof(tx_buffer));
+		usleep(100000);
+		strcpy(rx_buffer_old,rx_buffer);
+
+
+
+    }
+  return 0;
+}*/
+
+//Testing random youtube code
+
+# include <stdio.h>
+# include "altera_avalon_pio_regs.h"
+# include "system.h"
+# include "altera_avalon_uart_regs.h"
+
+
+void delay(int a)
+{
+	volatile int i = 0;
+	while (i < a*1000000)
+	{
+		i++;
+
+	}
+}
+
+void ledDemo()
+{
+	char a;
+	int b = 0;
+	int led_on = 0;
+
+	a = IORD_ALTERA_AVALON_UART_RXDATA(UART_0_BASE);
+	b = (int)a - 48;
+	printf("recived data : %d\n", b);
+}
+
+int main()
+{
+	int count = 0;
+	while(1)
+	{
+		printf("%d:", count);
+		ledDemo();
+		count = count+1;
+	}
+}
